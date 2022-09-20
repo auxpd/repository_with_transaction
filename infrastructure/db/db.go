@@ -47,8 +47,8 @@ type GormOpsImpl struct {
 }
 
 // NewGormDBOps 创建GORM DB操作对象
-func NewGormDBOps() IdbOps {
-	return GormOpsImpl{}
+func NewGormDBOps(db *gorm.DB) IdbOps {
+	return GormOpsImpl{db: db}
 }
 
 func (d GormOpsImpl) Transaction(ctx context.Context, fc func(ctx context.Context) error, opts ...*TxOptions) (err error) {
